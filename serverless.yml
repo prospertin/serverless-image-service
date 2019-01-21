@@ -31,5 +31,6 @@ plugins:
 # Needs for API gateway to process binaries/images
 custom:
   apigwBinary:
-    types:          
+    types: 
+      - "image/jpeg"         
       - '*/*'

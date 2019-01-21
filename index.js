@@ -1,35 +1,6 @@
-const serverless = require('serverless-http');
-const express = require('express')
-const resize = require('./resize');
-const app = express()
 const request = require('request');
 const sharp = require('sharp');
 
-// NEW WAY WITH EXPRESS
-// app.get('/image', function (req, res) {
-//    const widthString = req.query.width;
-//    const heightString = req.query.height;
-//    const format = req.query.format;
-//    var url = req.query.url;
-   
-//    // Parse to integer if possible
-//    let width, height;
-//    if (widthString) {
-//        width = parseInt(widthString);
-//    }
-//    if (heightString) {
-//        height = parseInt(heightString);
-//    }
-
-//    if (url === undefined) {
-//        url = 'https://buffer.com/library/wp-content/uploads/2018/11/free-images-featured-1024x547.png'
-//    }
-
-//    resize(url, format, width, height).pipe(res);
-// });
-
-// module.exports.handler = serverless(app);
-  
 // OLD WAY WITH HANDLER
 exports.handler = (event, context, callback) => {
 
@@ -48,7 +19,7 @@ exports.handler = (event, context, callback) => {
     }
 
     //Check if at least height or width is specified else error
-    
+
     console.log("SERVER  LESS URL: " + url);
     var requestSettings = {
         url: url,
