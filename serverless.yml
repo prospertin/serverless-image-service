@@ -1,0 +1,35 @@
+# serverless.yml
+
+service: image-service
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /image
+          method: get 
+          request:
+            parameters:
+              querystring:
+                url: true
+                width: false
+                height: false
+                format: false
+          response:
+10            headers:
+11              Content-Type: integration.response.header.Content-Type
+plugins:
+  - serverless-offline
+  - serverless-apigw-binary
+
+# Needs for API gateway to process binaries/images
+custom:
+  apigwBinary:
+    types:          
+      - '*/*'

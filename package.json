@@ -1,0 +1,21 @@
+{
+  "name": "image-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "serverless-http": "^1.9.0",
+    "sharp": "^0.21.3"
+  },
+  "devDependencies": {
+    "serverless-offline": "^4.1.3"
+  }
+}
