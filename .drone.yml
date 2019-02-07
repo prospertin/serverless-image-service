@@ -1,0 +1,24 @@
+branches:
+  - master
+
+pipeline:
+  node-modules:
+    image: node:latest
+    commands:
+      - npm install
+      - npm run lint
+      - npm run test
+
+  compression:
+    image: alpine:3.7
+    commands:
+      - apk add zip
+      - zip -r lambda.zip index.js node_modules
+
+  s3-upload:
+    when:
+      event: [ tags ]
+    image: meltwaterfoundation/drone-awscli
+    secrets: [ aws_access_key_id, aws_secret_access_key ]
+    commands:
+      - aws s3 cp lambda.zip s3://mercury-prod-lambdas/${DRONE_REPO_NAME}/${DRONE_TAG}/lambda.zip
